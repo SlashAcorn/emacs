@@ -1,0 +1,27 @@
+import time
+import board
+import pwmio
+import digitalio
+from adafruit_motor import servo
+
+OPENTIME = 0.3
+SECS_PER_DAY = 24 * 60 * 60
+
+pwm_servo = pwmio.PWMOut(board.GP5, duty_cycle=2 ** 15, frequency=50)
+servo1 = servo.Servo(
+    pwm_servo, min_pulse=500, max_pulse=2200)
+
+led = digitalio.DigitalInOut(board.LED)
+led.direction = digitalio.Direction.OUTPUT
+
+servo1.angle = 90
+time.sleep(1)
+
+while True:
+    led.value = True
+    servo1.angle = 180
+    time.sleep(OPENTIME)
+    servo1.angle = 90
+    time.sleep(OPENTIME)
+    led.value = False
+    time.sleep(SECS_PER_DAY - OPENTIME * 2)

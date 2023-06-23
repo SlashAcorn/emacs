@@ -1,0 +1,23 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".google.com"
+  [url-cookie "NID" "511=QXza5X8KaicngU70m2Ee1lbKyRKiuV9QM_06zfnNP8bmf0clnVqWvFbDJaNLG1d4O8O2Q2baRKriI3xsc0XMez-cP_2PzBMADPEVbL5-qb1C7UspJO4WV-_pvqiWLHNkdHhdyaawsHxzLHogl6N_B41Ur2qdRbnPsC2k0dZzkUA" "Sun, 17-Dec-2023 06:51:24 GMT" "/" ".google.com" nil]))
+)
+(setq url-cookie-secure-storage
+ '((".reddit.com"
+  [url-cookie "loid" "000000000dl1jxh5qj.2.1686984721000.Z0FBQUFBQmtqVmdSaG5aTnZESmxRaExNXzdsX3M3anlscG5NM0xxRkpmSTV1T1hOSWMydEFJYlNELXhrM1dKbDFpZ3NzUENYdGlvTEc2ZUEzQ3lOWnZWWGp0ZXg0NEd1RlIwQTVNTUhJNlppVUctTzJseEhLdnFqenA3NWJpN0VDM3NtY0NhOEc3cEo" "Mon, 16 Jun 2025 06:52:01 GMT" "/" ".reddit.com" t]
+  [url-cookie "csv" "2" "Mon Jun 16 06:52:01 2025 GMT" "/" ".reddit.com" t])
+ ("reddit.com"
+  [url-cookie "token_v2" "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJleUpoYkdjaU9pSlNVekkxTmlJc0ltdHBaQ0k2SWxOSVFUSTFOanB6UzNkc01ubHNWMFZ0TWpWbWNYaHdUVTQwY1dZNE1YRTJPV0ZGZFdGeU1ucExNVWRoVkd4amRXTlpJaXdpZEhsd0lqb2lTbGRVSW4wLmV5SnpkV0lpT2lKc2IybGtJaXdpWlhod0lqb3hOamczTURjeE1USXhMakUzTkRZNU15d2lhV0YwSWpveE5qZzJPVGcwTnpJeExqRTNORFk1TXl3aWFuUnBJam9pVG1aeFZrNXJja2t3TjNsR2IxWXhXbUZVV2tGMVNraDNRVlJWVDBsQklpd2lZMmxrSWpvaU1GSXRWMEZOYUhWdmJ5MU5lVkVpTENKc2FXUWlPaUowTWw5a2JERnFlR2cxY1dvaUxDSnNZMkVpT2pFMk9EWTVPRFEzTWpFeE56TXNJbk5qY0NJNkltVktlR3RyWkVkUGRFUkJTV2hrTFd3eGVqZENYM2x3WDA1b2RITmpXV0Z6VEZGaGIyc3piamRFVm05amF6Y3plWGRRYm1GM2RrWmZaM0I1TlU0d2RGUjViMHRzYTBkdFlVVm9Zbmw2Y2tsRFUxcHlVMnM1VWxremJXeExWa3hCV20xamRWWmtjWHBSTkVsR2NGTndWa3cxY21KUk5EbEpiVTVJWkdvd1lrMVVWakZWZFV0M0xYRkJjVEp1WVcxNmFrWnlXVzU0Y0cxT01WbGFWVmhLWkZSdFkwTjVWVVEyVEVaZk1sRnhOMll5TFZSUU9VcHlVMFJaVlZaV1pVdENNMEpMUldOdU5ETkdSakZRV1Y5VU1ERTJaRzAyV1VaR04zSjNaWEJtWVRkSU4zUndibnBWUzNwalgzTTFibkk0TW10dVJUVk1jekZRYzBnNU0xOVNTVFk0VFdwNlRYRk5UMWxOVVdGbWNGSm9VamxpYUZnelZVRnNVWE5MUjBWelVXNHdXV2RXZVRkbVgydDFkMWhhVUMxT1Z6VklabEJJVG1sS2RtVTRSbk42VlUwNGJHbEZUMlo0ZEdSMlFVRkJRVjlmTFVONVpGRnVJaXdpWm14dklqb3hmUS5TZzh0V3JieWtGbmJwLXpZM2ZpRjhlQ1M2SXRlVElEYS1mMWZOQ2pLcnZicDFmUHd1QnlvM2N0UXhKQ0lMR01EU1ZKRExRcHZ3M1p0Nld0aC14THN1MUdMY0tFdTZSX0VWZFJ1TFRTZXAwU2N2WkxqU3hpWGhENDVSR0RWUXMzbm4wUnEyZEVmMHNZWmJNSGQtd2xJeVUxVWhwM2x4b3k0YTdfQlkxeGZEbEtueG1pN29jZUlLTVU2dE5KTXRrWFRIblNUSjVoQ2hLVjNHeUdNRDZ3RU1VT3BMLXFGOENkOUcwRkR6S25abjRIOTU5RUQzdHZCZEVfN2sxajZrcUxZbG5hOTN4M1ZKYWIxUWdYenAzT0puaGpNUWdFUk5zb253NHlXQ1NxLWRTNHBOVVNqbk9GdEItMllwRElkeWdXM05tWGViSVUtdTdUQUMyX2wwZGZvaGciLCJleHAiOjE2ODcwNzEwMDEsImxvZ2dlZEluIjpmYWxzZSwic2NvcGVzIjpbIioiXSwiY2lkIjoiMFItV0FNaHVvby1NeVEifQ.-e5ug_ETxzMR7fI6Bcc6KkLsM18vpUTnFa7lsgvTTfI" "Tue, 17 Jun 2025 06:52:01 GMT" "/" "reddit.com" t]
+  [url-cookie "edgebucket" "E5clQtiqtZbuvTQhUk" "Mon Jun 16 06:52:00 2025 GMT" "/" "reddit.com" t])
+ (".google.com"
+  [url-cookie "1P_JAR" "2023-06-17-06" "Mon, 17-Jul-2023 06:51:50 GMT" "/" ".google.com" t]
+  [url-cookie "AEC" "AUEFqZd4zkdGxK36eUP9VsjavALUoJGwDgzkXpk-1vLokauCceCf9OtU1nw" "Thu, 14-Dec-2023 06:51:50 GMT" "/" ".google.com" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:

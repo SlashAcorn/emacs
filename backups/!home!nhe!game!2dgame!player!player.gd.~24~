@@ -1,0 +1,90 @@
+extends KinematicBody2D
+
+export var bpm = 120
+
+const ACCELERATION = 3000
+const MAX_SPEED = 18000
+const LIMIT_SPEED_Y = 1200
+const SHORT_HOP_HEIGHT = 12000
+const MAX_COYOTE_TIME = 6
+const JUMP_BUFFER_TIME = 10
+const WALL_JUMP_AMOUNT = 18000
+const WALL_JUMP_TIME = 10
+const WALL_SLIDE_FACTOR = 0.8
+const WALL_HORIZONTAL_TIME = 30
+const GRAVITY = 2100
+const DASH_SPEED = 36000
+
+
+var velocity = Vector2()
+var axis = Vector2()
+
+var fullHopHeight = 30000
+var jumpTimer = 0
+var coyoteTimer = 0
+var jumpBufferTimer = 0
+var wallJumpTimer = 0
+var wallHorizontalTimer = 0
+var dashTime = 0
+
+var canJump = false
+var friction = false
+var wall_sliding = false
+var isDashing = false
+var hasDashed = false
+
+
+func _physics_process(delta):
+	if velocity.y <= LIMIT_SPEED_Y:
+		if !isDashing:
+			velocity.y += GRAVITY * delta
+
+	friction = false
+
+	getInputAxis()
+
+	if is_on_floor():
+		canJump = true
+		coyoteTimer = 0
+	else:
+		coyoteTimer += 1
+		if coyoteTimer > MAX_COYOTE_TIME:
+			canJump = false
+			coyoteTimer = 0
+		friction = true
+
+	jumpBuffer(delta)
+
+	if Input.is_action_just_pressed("jump"):
+		jumpTimer += 1
+		if jumpTimer > 5:
+			jump(delta)
+	if Input.is_action_just_released("jump"):
+		if jumpTimer < 6:
+			shortHop(delta)
+
+	velocity = move_and_slide(velocity, Vector2.UP)
+
+func shortHop(delta):
+	velocity.y = -SHORT_HOP_HEIGHT * delta
+	jumpTimer = 0
+
+func jump(delta):
+	velocity.y = -fullHopHeight * delta
+	jumpTimer = 0
+
+func airFriction():
+	if friction:
+		velocity.x = lerp(velocity.x, 0, 0.01)
+
+func jumpBuffer(delta):
+	if jumpBufferTimer > 0:
+		if is_on_floor():
+			jump(delta)
+		jumpBufferTimer -= 1
+
+func getInputAxis():
+	axis = Vector2.ZERO
+	axis.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+	axis.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	axis = axis.normalized()

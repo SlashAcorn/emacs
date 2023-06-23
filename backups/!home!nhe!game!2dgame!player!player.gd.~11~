@@ -1,0 +1,40 @@
+extends KinematicBody2D
+
+export var bpm = 120
+
+const ACCELERATION = 3000
+const MAX_SPEED = 18000
+const LIMIT_SPEED_Y = 1200
+const SHORT_HOP_HEIGHT = 12000
+const FULL_HOP_HEIGHT = 30000
+const MAX_COYOTE_TIME = 6
+const JUMP_BUFFER_TIME = 10
+const WALL_JUMP_AMOUNT = 18000
+const WALL_JUMP_TIME = 10
+const WALL_SLIDE_FACTOR = 0.8
+const WALL_HORIZONTAL_TIME = 30
+const GRAVITY = 2100
+const DASH_SPEED = 36000
+
+
+var velocity = Vector2()
+var axis = Vector2()
+
+var jumpTimer = 0
+var coyoteTimer = 0
+var jumpBufferTimer = 0
+var wallJumpTimer = 0
+var wallHorizontalTimer = 0
+var dashTime = 0
+
+var canJump = false
+var friction = false
+var wall_sliding = false
+var isDashing = false
+var hasDashed = false
+
+
+func _physics_process(delta):
+	if velocity.y <= LIMIT_SPEED_Y:
+		if !isDashing:
+			velocity.y += GRAVITY * delta
