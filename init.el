@@ -41,6 +41,16 @@
   (setq beacon-blink-when-focused t)
   (beacon-mode 1))
 
+;; Minimap
+(use-package minimap
+  :config
+  (setq minimap-mode t)
+  (setq minimap-update-delay 0)
+  (setq minimap-window-location 'right)
+  (setq minimap-active-region-background ((t (:extend nil))))
+  :init
+  (minimap-mode 0))
+
 ;; WS-Butler
 ;; Cleans up whitespace on the ends of lines.
 (use-package ws-butler
