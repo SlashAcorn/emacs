@@ -1,1 +1,1 @@
-("~/.config/emacs/")
+("~/.config/emacs/" "~/prj/wallpapers/" "~/prj/site/" "~/prj/dotfiles/")

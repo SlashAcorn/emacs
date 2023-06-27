@@ -18,6 +18,8 @@
 (eval-when-compile
   (add-to-list 'load-path "~/.config/emacs/elpa/use-package-20230203.2004")
   (require 'use-package))
+(setq use-package-always-ensure t)
+(setq use-package-always-defer t)
 
 ;; Auto Update
 (use-package auto-package-update
@@ -29,6 +31,23 @@
   (setq auto-package-update-hide-results t)
   ;; Update installed packages at startup if there is an update pending.
   (auto-package-update-maybe))
+
+;; Projectile
+(use-package projectile
+  :config
+  (setq projectile-project-search-path '("~/prj/"))
+  :init
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  ;; (setq projectile-keymap-prefix (kbd "C-c p")))
+
+  ;; Recentf
+(use-package recentf
+  :config
+  (setq recentf-save-file (expand-file-name "~/.config/emacs/var/recentf"))
+  :init
+  (recentf-mode 1)
+  (global-set-key (kbd "C-c r") 'recentf-open-files))
 
 ;; Beacon
 ;; Highlights cursor so you don't get lost.
@@ -47,7 +66,7 @@
   (setq minimap-mode t)
   (setq minimap-update-delay 0)
   (setq minimap-window-location 'right)
-  (setq minimap-active-region-background ((t (:extend nil))))
+  ;; (setq minimap-active-region-background ((t (:extend nil))))
   :init
   (minimap-mode 0))
 
@@ -60,7 +79,7 @@
 ;; Comment-DWIM
 ;; Allows for commenting out reigons and lines with a keypress. (M-;)
 (use-package comment-dwim-2
- :bind (("M-;" . comment-dwim-2)
+  :bind (("M-;" . comment-dwim-2)
         (:map org-mode-map
               ("M-;" . org-comment-dwim-2))))
 
@@ -71,6 +90,13 @@
   :config
   (setq which-key-idle-delay 0.1))
 
+;; Flycheck
+(use-package flycheck
+  :bind
+  (("C-c f" . flycheck-mode))
+  :init
+  (add-hook 'after-init-hook #'global-flycheck-mode))
+
 ;; Rainbow Delimiters
 ;; Highlights Corresponding Brackets
 (use-package rainbow-delimiters
@@ -79,15 +105,51 @@
 ;; Keep .config/emacs clean
 (use-package no-littering)
 
-;; Projectile
-(projectile-mode +1)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;; Emojify
+(use-package emojify
+  :hook (erc-mode . emojify-mode)
+  :commands emojify-mode)
+
+;; Neotree
+(use-package neotree
+  :config
+  (setq neo-theme 'nerd))
+
+;; Custom Dashboard
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook)
+  :init
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-center-content t)
+  ;; (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
+  ;; (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
+  ;; (setq dashboard-set-heading-icons t)
+  ;; (setq dashboard-set-file-icons t)
+  (setq dashboard-set-navigator t)
+  (setq dashboard-set-footer nil)
+  (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
+  (setq dashboard-items '((recents  . 5)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 5))))
+
+;; Doom modeline
+(use-package doom-modeline
+  :init
+  (doom-modeline-mode 1))
+
+;; VTerm
+(use-package vterm
+  :bind
+  (("M-RET" . vterm)))
 
 ;;             BASIC CONFIGURATAION
 ;;            [====================]
 
 ;; Load Theme Based On Current Host
-;; Load Catppuccin on my desktop and Monokai on my Thinkpad
+;; Load Catppuccin on my desktop and Wombat on my Thinkpad
 (if (string= (system-name) "littlefella")
     (progn
       (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
@@ -143,6 +205,7 @@
 ;; Double Check Before Quit
 (setq confirm-kill-proccesses t)
 
+
 ;; Refresh File When File Changes Outside of Emacs
 (global-auto-revert-mode 1)
 
@@ -153,11 +216,6 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
-
-;; Emoji Support!
-(use-package emojify
-  :hook (erc-mode . emojify-mode)
-  :commands emojify-mode)
 
 ;; Line Numbers
 (global-display-line-numbers-mode 1)
@@ -217,51 +275,11 @@
 (setq cursor-type 'box)
 (blink-cursor-mode 1)
 
-;; Remember Recent Edited Files
-(recentf-mode 1)
-(global-set-key (kbd "C-x r") 'recentf-open-files)
-
 ;; Remove Warning on Large Files
 (setq large-file-warning-threshold nil)
 
 ;; Remove Warning on Advised Functions
 (setq ad-redefinition-action 'accept)
-
-;; Flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-;; Neotree Theme
-(setq neo-theme 'nerd)
-
-;; Custom Dashboard
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook))
-(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-(setq dashboard-startup-banner 'logo)
-(setq dashboard-center-content t)
-;; (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
-;; (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
-;; (setq dashboard-set-heading-icons t)
-;; (setq dashboard-set-file-icons t)
-(setq dashboard-set-navigator t)
-(setq dashboard-set-footer nil)
-(setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
-(setq dashboard-items '((recents  . 5)
-                        (bookmarks . 5)
-                        (projects . 5)
-                        (agenda . 5)))
-
-;;             MODELINE MODIFICATIONS
-;;            [======================]
-(use-package mood-line
-  ;; Enable mood-line
-  :config
-  (mood-line-mode)
-  ;; mood-line glyphs (unicode ones don't work idk why tbh)
-  :custom
-  (mood-line-glyph-alist mood-line-glyphs-ascii))
 
 ;;             KEYBOARD MODIFICATIONS
 ;;            [======================]
@@ -280,9 +298,6 @@
 
 ;; Bind C-S-j to Goto Line
 (global-set-key (kbd "C-S-j") 'goto-line)
-
-;; Bind C-x r to Open Recent Files
-(global-set-key (kbd "C-x r") 'recentf-open-files)
 
 ;; Unbind C-z because C-x C-z does the same thing
 (global-unset-key (kbd "C-z"))
