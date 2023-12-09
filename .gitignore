@@ -3,6 +3,7 @@
 \#*
 .#*
 /elpa/
+/backups/
 /var/auto-save/sessions/*
 /dirvish
 /undo-fu-session/
@@ -14,3 +15,4 @@
 /projects
 /tramp
 /projectile-bookmarks.eld
+/recentf
