@@ -1,1 +1,0 @@
-("~/.config/emacs/" "~/prj/wallpapers/" "~/prj/site/" "~/prj/psy-bop/" "~/prj/dotfiles/")
