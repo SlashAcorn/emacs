@@ -4,3 +4,12 @@
 .#*
 /elpa/
 /var/auto-save/sessions/*
+/dirvish
+/undo-fu-session/
+/transient/
+/.last-package-update-day
+/bookmarks
+/games/
+/ac-comphist.dat
+/projects
+/tramp
