@@ -22,32 +22,58 @@
 (setq use-package-always-defer t)
 
 ;; Auto Update
-(use-package auto-package-update
-  :defer 10
-  :config
-  ;; Delete residual old versions
-  (setq auto-package-update-delete-old-versions t)
-  ;; Do not bother me when updates have taken place.
-  (setq auto-package-update-hide-results t)
-  ;; Update installed packages at startup if there is an update pending.
-  (auto-package-update-maybe))
+;; (use-package auto-package
+;;   :defer 10
+;;   :config
+;;   ;; Delete residual old versions
+;;   (setq auto-package-update-delete-old-versions t)
+;;   ;; Do not bother me when updates have taken place.
+;;   (setq auto-package-update-hide-results t)
+;;   ;; Update installed packages at startup if there is an update pending.
+;;   (auto-package-update-maybe))
 
 ;; Projectile
 (use-package projectile
   :config
-  (setq projectile-project-search-path '("~/prj/"))
+
   :init
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
-  ;; (setq projectile-keymap-prefix (kbd "C-c p")))
 
-  ;; Recentf
+;; Recentf
 (use-package recentf
   :config
   (setq recentf-save-file (expand-file-name "~/.config/emacs/var/recentf"))
   :init
   (recentf-mode 1)
   (global-set-key (kbd "C-c r") 'recentf-open-files))
+
+;; Ivy/Counsel/Swiper
+(use-package ivy
+  :config
+  (global-set-key (kbd "C-s") 'swiper)
+  (global-set-key (kbd "C-S-s") 'isearch-forward)
+  (setq ivy-initial-inputs-alist '((counsel-minor . "^+")
+                                  (counsel-package . "^+")
+                                  (counsel-org-capture . "^")
+                                  (counsel-M-x . "^")
+                                  (counsel-describe-symbol . "^")
+                                  (org-refile . "^")
+                                  (org-agenda-refile . "^")
+                                  (org-capture-refile . "^")
+                                  (Man-completion-table . "^")
+                                  (woman . "^")))
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  :init
+  (ivy-mode 1)
+  (counsel-mode 1))
+
+;; Ivy-Prescient
+;; (use-package ivy-prescient
+;;   :after counsel
+;;   :config
+;;   (ivy-prescient-mode 1))
 
 ;; Beacon
 ;; Highlights cursor so you don't get lost.
@@ -86,16 +112,44 @@
 ;; Which-Key
 ;; Shows keybind in command minibuffer menu.
 (use-package which-key
-  :init (which-key-mode)
+  :init
+  (which-key-mode)
   :config
   (setq which-key-idle-delay 0.1))
+
+;; Smartparens
+;; Automatic parenthesis placement
+(use-package smartparens
+  :init
+  (smartparens-mode 1)
+  :config
+  (global-set-key (kbd "M-C-f") 'sp-forward-sexp)
+  (global-set-key (kbd "M-C-b") 'sp-backward-sexp))
+
+;; Undo Fu
+;; More understandable undo system for a pea brain like me
+(use-package undo-fu
+  :init
+  (global-set-key (kbd "M-u")   'undo-fu-only-undo)
+  (global-set-key (kbd "M-r") 'undo-fu-only-redo)
+  (global-set-key (kbd "M-S-r") 'undo-fu-only-redo)
+  (setq undo-limit 67108864)
+  (setq undo-strong-limit 100663296)
+  (setq undo-outer-limit 1006632960))
+
+;; Undo Fu Session
+;; Keeps undos from undo-fu even when emacs is closed
+(use-package undo-fu-session
+  :init
+  (undo-fu-session-global-mode))
 
 ;; Flycheck
 (use-package flycheck
   :bind
   (("C-c f" . flycheck-mode))
-  :init
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  ;; :init
+  ;; (add-hook 'after-init-hook #'global-flycheck-mode)
+)
 
 ;; Rainbow Delimiters
 ;; Highlights Corresponding Brackets
@@ -110,30 +164,16 @@
   :hook (erc-mode . emojify-mode)
   :commands emojify-mode)
 
+;; Elcord
+;; Discord rich prescence for Emacs
+(use-package elcord
+  :init
+  (elcord-mode))
+
 ;; Neotree
 (use-package neotree
   :config
   (setq neo-theme 'nerd))
-
-;; Custom Dashboard
-(use-package dashboard
-  :config
-  (dashboard-setup-startup-hook)
-  :init
-  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-  (setq dashboard-startup-banner 'logo)
-  (setq dashboard-center-content t)
-  ;; (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
-  ;; (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
-  ;; (setq dashboard-set-heading-icons t)
-  ;; (setq dashboard-set-file-icons t)
-  (setq dashboard-set-navigator t)
-  (setq dashboard-set-footer nil)
-  (setq dashboard-projects-switch-function 'counsel-projectile-switch-project-by-name)
-  (setq dashboard-items '((recents  . 5)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (agenda . 5))))
 
 ;; Doom modeline
 (use-package doom-modeline
@@ -144,6 +184,59 @@
 (use-package vterm
   :bind
   (("M-RET" . vterm)))
+
+;; Custom Dashboard
+(use-package dashboard
+  :config
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-center-content t)
+  ;; (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
+  ;; (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
+  ;; (setq dashboard-set-heading-icons t)
+  ;; (setq dashboard-set-file-icons t)
+  (setq dashboard-set-navigator t)
+  (setq dashboard-set-footer nil)
+  (setq dashboard-projects-backend 'projectile)
+  (setq dashboard-items '((recents  . 5)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (agenda . 5)))
+  :init
+  (dashboard-setup-startup-hook))
+
+;; Dirvish
+;; an improved version of the Emacs inbuilt package Dired.
+(use-package dirvish
+  :init
+  (dirvish-override-dired-mode 1))
+
+;; ibuffer
+(use-package ibuffer
+  :config
+  (setq ibuffer-save-with-custom nil
+        ibuffer-saved-filter-groups
+        '(("default"
+           ("pdf" (mode . pdf-view-mode))
+           ("code" (and (or (derived-mode . prog-mode) (mode . yaml-mode)) (not (name . "^\\*scratch\\*$"))))
+           ("dired" (or (mode . dired-mode) (mode . dired-mode))
+           ("special" (and (name . "^\*") (not (name . "^\\*scratch\\*$"))))))))
+
+  (add-hook 'ibuffer-mode-hook
+            (lambda ()
+              (ibuffer-switch-to-saved-filter-groups "default"))))
+
+;; Impatient Mode
+;; emacs live preview
+(use-package impatient-mode
+  :config
+  (defun impatient-start ()
+    (interactive)
+    (httpd-start)
+    (impatient-mode 1)
+    (browse-url "http://localhost:8080/imp/"))
+  (global-set-key (kbd "C-c C-l") 'impatient-start)
+  (global-set-key (kbd "C-c C-L") 'impatient-mode))
 
 ;;             BASIC CONFIGURATAION
 ;;            [====================]
@@ -160,7 +253,7 @@
 ;; Font
 (custom-set-faces
  '(default ((t (:family "JetBrainsMono Nerd Font" :foundry "JB" :slant normal
-                :weight normal :height 113 :width normal)))))
+                :weight normal :height 113 :width expanded)))))
 
 ;; Remove Black Bars From Emacs Window
 (set-fringe-mode 0)
@@ -284,6 +377,11 @@
 ;;             KEYBOARD MODIFICATIONS
 ;;            [======================]
 
+;; Bind M-u and M-l to C-c u and C-c l because they get in the way and I never
+;; use them
+(global-set-key (kbd "C-c u") 'upcase-word)
+(global-set-key (kbd "C-c l") 'downcase-word)
+
 ;; Bind M-p to previous paragraph to match C-Up
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
@@ -292,9 +390,6 @@
 
 ;; ESC Cancels All
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-;; Bind C-j to Swiper
-(global-set-key (kbd "C-j") 'swiper)
 
 ;; Bind C-S-j to Goto Line
 (global-set-key (kbd "C-S-j") 'goto-line)
@@ -318,7 +413,8 @@
   "toggle elements"
   ("f" neotree-toggle "toggle neotree")
   ("m" minimap-mode "toggle minimap")
-  ("t" vterm-toggle "toggle terminal"))
+  ("t" vterm-toggle "toggle terminal")
+  ("p" smartparens-mode "toggle auto parenthesis"))
 
 ;; Helpful Keys
 (global-set-key (kbd "C-h f") #'helpful-callable)
@@ -387,6 +483,13 @@
 
 ;; Bind 'the-the' to  C-c
 (global-set-key "\C-c\\" 'the-the)
+
+(defun set-elisp-mode-settings ()
+  "Sets my keybinds to use elisp evaluation commands"
+  (local-set-key (kbd "C-c C-r") 'eval-region)
+  (local-set-key (kbd "C-c C-b") 'eval-buffer))
+
+(add-hook 'emacs-lisp-mode-hook 'set-elisp-mode-settings)
 
 ;; Remove Bothersome Compiler Warnings
 (setq comp-async-report-warnings-errors nil)
