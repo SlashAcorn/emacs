@@ -88,6 +88,19 @@
 ;; Hydra
 (use-package hydra)
 
+;; Helpful
+;; Relpace normal C-h binds with more helpful ones
+(use-package helpful
+  :init
+  (global-set-key (kbd "C-h f") #'helpful-callable)
+  (global-set-key (kbd "C-h v") #'helpful-variable)
+  (global-set-key (kbd "C-h k") #'helpful-key)
+  (global-set-key (kbd "C-h x") #'helpful-command))
+
+;; More Helpful Keys
+(global-set-key (kbd "C-c C-d") #'helpful-at-point)
+(global-set-key (kbd "C-h F") #'helpful-function)
+
 ;; Beacon
 ;; Highlights cursor so you don't get lost.
 (use-package beacon
@@ -290,6 +303,13 @@
 ;; Org agenda file
 (setq org-agenda-files "~/agenda.org")
 
+(custom-set-faces
+ '(org-level-4 :inherit outline-4 :height 1.1)
+ '(org-level-3 :inherit outline-3 :height 1.25)
+ '(org-level-2 :inherit outline-2 :height 1.5)
+ '(org-level-1 :inherit outline-1 :height 1.75)
+ '(org-document-title :height 2.0 :underline nil))
+
 ;; Prettify Symbols
 (defun my/org-mode/load-prettify-symbols ()
   (interactive)
@@ -482,16 +502,6 @@
   ("m" minimap-mode "toggle minimap")
   ("t" vterm-toggle "toggle terminal")
   ("p" smartparens-mode "toggle auto parenthesis"))
-
-;; Helpful Keys
-(global-set-key (kbd "C-h f") #'helpful-callable)
-(global-set-key (kbd "C-h v") #'helpful-variable)
-(global-set-key (kbd "C-h k") #'helpful-key)
-(global-set-key (kbd "C-h x") #'helpful-command)
-
-;; More Helpful Keys
-(global-set-key (kbd "C-c C-d") #'helpful-at-point)
-(global-set-key (kbd "C-h F") #'helpful-function)
 
 ;; Dictionary Definition of Current Word
 (global-set-key (kbd "C-h d") #'dictionary-lookup-definition)
