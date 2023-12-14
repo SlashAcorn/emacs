@@ -202,6 +202,12 @@
                           (bookmarks . 5)
                           (projects . 5)
                           (agenda . 5)))
+  (setq dashboard-item-shortcuts
+        '((recents   . "r")
+          (bookmarks . "b")
+          (projects  . "p")
+          (agenda    . "a")
+          (registers . "e")))
   :init
   (dashboard-setup-startup-hook))
 
