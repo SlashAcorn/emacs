@@ -205,6 +205,15 @@
   :init
   (dashboard-setup-startup-hook))
 
+(use-package elfeed-dashboard
+  :ensure t
+  :config
+  (setq elfeed-dashboard-file "~/.config/emacs/elfeed/elfeed-dashboard.org")
+  ;; update feed counts on elfeed-quit
+  (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)
+  :init
+  (load "~/.config/emacs/elfeed/feeds.el"))
+
 ;; Dirvish
 ;; an improved version of the Emacs inbuilt package Dired.
 (use-package dirvish
