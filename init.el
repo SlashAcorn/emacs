@@ -120,9 +120,12 @@
 ;; Smartparens
 ;; Automatic parenthesis placement
 (use-package smartparens
-  :init
-  (smartparens-mode 1)
+  :diminish smartparens-mode
   :config
+  (progn
+    (require 'smartparens-config)
+    (smartparens-global-mode 1)
+    (show-paren-mode t))
   (global-set-key (kbd "M-C-f") 'sp-forward-sexp)
   (global-set-key (kbd "M-C-b") 'sp-backward-sexp))
 
@@ -212,7 +215,6 @@
   (dashboard-setup-startup-hook))
 
 (use-package elfeed-dashboard
-  :ensure t
   :config
   (setq elfeed-dashboard-file "~/.config/emacs/elfeed/elfeed-dashboard.org")
   ;; update feed counts on elfeed-quit
@@ -252,6 +254,41 @@
     (browse-url "http://localhost:8080/imp/"))
   (global-set-key (kbd "C-c C-l") 'impatient-start)
   (global-set-key (kbd "C-c C-L") 'impatient-mode))
+
+
+;;             ORG MODE
+;;            [========]
+
+;; org-bullets
+;; Replace *s with utf-8 bullets
+(use-package org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(setq org-hide-leading-stars t)
+
+;; Syntax highlighting
+(setq org-src-fontify-natively t)
+
+;; toc-org
+;; Table of contents for org
+(use-package toc-org
+  :commands toc-org-enable
+  :init (add-hook '^org-mode-hook 'toc-org-enable))
+
+;; Org agenda file
+(setq org-agenda-files "~/agenda.org")
+
+;; Prettify Symbols
+(defun my/org-mode/load-prettify-symbols ()
+  (interactive)
+  (setq prettify-symbols-alist
+        '(("[ ]" . ?󰄱)
+          ("[X]" . ?󰱒)
+          ("#+DATE:" . ?󰃮)
+          ("#+begin_src" . ?)
+          ("#+end_src" . ?)
+          ("#+begin_example" .)
+          ("#+end_example" .)))
+  (prettify-symbols-mode 1))
 
 ;;             BASIC CONFIGURATAION
 ;;            [====================]
