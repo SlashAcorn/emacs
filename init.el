@@ -40,6 +40,9 @@
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
+;; Magit
+(use-package magit)
+
 ;; Recentf
 (use-package recentf
   :config
@@ -48,8 +51,16 @@
   (recentf-mode 1)
   (global-set-key (kbd "C-c r") 'recentf-open-files))
 
-;; Ivy/Counsel/Swiper
+;; Counsel
+(use-package counsel
+  :init
+  (counsel-mode 1))
+
+;; Ivy/Swiper
+(use-package swiper)
 (use-package ivy
+  :after
+  (counsel)
   :config
   (global-set-key (kbd "C-s") 'swiper)
   (global-set-key (kbd "C-S-s") 'isearch-forward)
@@ -66,14 +77,16 @@
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   :init
-  (ivy-mode 1)
-  (counsel-mode 1))
+  (ivy-mode 1))
 
 ;; Ivy-Prescient
 ;; (use-package ivy-prescient
 ;;   :after counsel
 ;;   :config
 ;;   (ivy-prescient-mode 1))
+
+;; Hydra
+(use-package hydra)
 
 ;; Beacon
 ;; Highlights cursor so you don't get lost.
