@@ -303,12 +303,12 @@
 ;; Org agenda file
 (setq org-agenda-files "~/agenda.org")
 
-(custom-set-faces
- '(org-level-4 :inherit outline-4 :height 1.1)
- '(org-level-3 :inherit outline-3 :height 1.25)
- '(org-level-2 :inherit outline-2 :height 1.5)
- '(org-level-1 :inherit outline-1 :height 1.75)
- '(org-document-title :height 2.0 :underline nil))
+;; (custom-set-faces
+;;  '(org-level-4 :inherit outline-4 :height 1.1)
+;;  '(org-level-3 :inherit outline-3 :height 1.25)
+;;  '(org-level-2 :inherit outline-2 :height 1.5)
+;;  '(org-level-1 :inherit outline-1 :height 1.75)
+;;  '(org-document-title :height 2.0 :underline nil))
 
 ;; Prettify Symbols
 (defun my/org-mode/load-prettify-symbols ()
