@@ -412,6 +412,8 @@
 ;; Unbind C-z because C-x C-z does the same thing
 (global-unset-key (kbd "C-z"))
 
+;; Bind C-r to repeat so that I don't have to C-x z
+(global-set-key (kbd "C-r") 'repeat)
 
 ;; Zoom Keys
 ;; C-z i to zoom in and C-z o to zoom out
