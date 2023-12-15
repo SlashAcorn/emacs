@@ -195,9 +195,9 @@
 
 ;; Elcord
 ;; Discord rich prescence for Emacs
-(use-package elcord
-  :init
-  (elcord-mode))
+(use-package elcord)
+  ;; :init
+  ;; (elcord-mode))
 
 ;; Neotree
 (use-package neotree
