@@ -74,7 +74,7 @@
   (setq ivy-initial-inputs-alist '((counsel-minor . "^+")
                                   (counsel-package . "^+")
                                   (counsel-org-capture . "^")
-                                  (counsel-M-x . "^")
+                                  (counsel-M-x . "")
                                   (counsel-describe-symbol . "^")
                                   (org-refile . "^")
                                   (org-agenda-refile . "^")
