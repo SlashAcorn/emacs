@@ -175,7 +175,9 @@
     (smartparens-global-mode 1)
     (show-paren-mode t))
   (global-set-key (kbd "M-C-f") 'sp-forward-sexp)
-  (global-set-key (kbd "M-C-b") 'sp-backward-sexp))
+  (global-set-key (kbd "M-C-b") 'sp-backward-sexp)
+  :init
+  (smartparens-mode 1))
 
 ;; undo-fu
 ;; Undo helper with redo
