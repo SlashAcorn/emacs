@@ -53,14 +53,13 @@
 
 ;; Counsel
 (use-package counsel
+  :after ivy
   :init
   (counsel-mode 1))
 
 ;; Ivy/Swiper
 (use-package swiper)
 (use-package ivy
-  :after
-  (counsel)
   :config
   (global-set-key (kbd "C-s") 'swiper)
   (global-set-key (kbd "C-S-s") 'isearch-forward)
@@ -79,11 +78,24 @@
   :init
   (ivy-mode 1))
 
+;; ivy-rich
+;; A more friendly interface for ivy
+(use-package ivy-rich
+  :after ivy
+  :init (ivy-rich-mode))
+
+;; nerd-icons-ivy-rich
+;; Display icons for all buffers in ivy
+(use-package nerd-icons-ivy-rich
+  :ensure t
+  :init
+  (nerd-icons-ivy-rich-mode 1))
+
 ;; Ivy-Prescient
-;; (use-package ivy-prescient
-;;   :after counsel
-;;   :config
-;;   (ivy-prescient-mode 1))
+(use-package ivy-prescient
+  :after counsel
+  :init
+  (ivy-prescient-mode 1))
 
 ;; Hydra
 (use-package hydra)
