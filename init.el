@@ -14,7 +14,8 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;; Use Package
+;; use-package
+;; A configuration macro for simplifying your .emacs
 (eval-when-compile
   (add-to-list 'load-path "~/.config/emacs/elpa/use-package-20230203.2004")
   (require 'use-package))
@@ -32,7 +33,8 @@
 ;;   ;; Update installed packages at startup if there is an update pending.
 ;;   (auto-package-update-maybe))
 
-;; Projectile
+;; projectile
+;; Manage and navigate projects in Emacs easily
 (use-package projectile
   :config
 
@@ -40,10 +42,11 @@
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
-;; Magit
+;; magit
+;; A Git porcelain inside Emacs.
 (use-package magit)
 
-;; Recentf
+;; recentf
 (use-package recentf
   :config
   (setq recentf-save-file (expand-file-name "~/.config/emacs/var/recentf"))
@@ -51,14 +54,19 @@
   (recentf-mode 1)
   (global-set-key (kbd "C-c r") 'recentf-open-files))
 
-;; Counsel
+;; counsel
+;; Various completion functions using Ivy
 (use-package counsel
   :after ivy
   :init
   (counsel-mode 1))
 
-;; Ivy/Swiper
+;; swiper
+;; Isearch with an overview.  Oh, man!
 (use-package swiper)
+
+;; ivy
+;; Incremental Vertical completYon
 (use-package ivy
   :config
   (global-set-key (kbd "C-s") 'swiper)
@@ -79,42 +87,42 @@
   (ivy-mode 1))
 
 ;; ivy-rich
-;; A more friendly interface for ivy
+;; More friendly display transformer for ivy
 (use-package ivy-rich
   :after ivy
   :init (ivy-rich-mode))
 
 ;; nerd-icons-ivy-rich
-;; Display icons for all buffers in ivy
+;; Excellent experience with nerd icons for ivy/counsel
 (use-package nerd-icons-ivy-rich
   :ensure t
   :init
   (nerd-icons-ivy-rich-mode 1))
 
-;; Ivy-Prescient
+;; ivy-prescient
+;; prescient.el + Ivy
 (use-package ivy-prescient
   :after counsel
   :init
   (ivy-prescient-mode 1))
 
-;; Hydra
+;; hydra
+;; Make bindings that stick around.
 (use-package hydra)
 
-;; Helpful
-;; Relpace normal C-h binds with more helpful ones
+;; helpful
+;; A better *help* buffer
 (use-package helpful
   :init
   (global-set-key (kbd "C-h f") #'helpful-callable)
   (global-set-key (kbd "C-h v") #'helpful-variable)
   (global-set-key (kbd "C-h k") #'helpful-key)
-  (global-set-key (kbd "C-h x") #'helpful-command))
+  (global-set-key (kbd "C-h x") #'helpful-command)
+  (global-set-key (kbd "C-c C-d") #'helpful-at-point)
+  (global-set-key (kbd "C-h F") #'helpful-function))
 
-;; More Helpful Keys
-(global-set-key (kbd "C-c C-d") #'helpful-at-point)
-(global-set-key (kbd "C-h F") #'helpful-function)
-
-;; Beacon
-;; Highlights cursor so you don't get lost.
+;; beacon
+;; Highlight the cursor whenever the window scrolls
 (use-package beacon
   :init
   (setq beacon-blink-when-point-moves t)
@@ -124,7 +132,8 @@
   (setq beacon-blink-when-focused t)
   (beacon-mode 1))
 
-;; Minimap
+;; minimap
+;; Sidebar showing a "mini-map" of a buffer
 (use-package minimap
   :config
   (setq minimap-mode t)
@@ -134,29 +143,30 @@
   :init
   (minimap-mode 0))
 
-;; WS-Butler
-;; Cleans up whitespace on the ends of lines.
+;; ws-butler
+;; Unobtrusively remove trailing whitespace.
 (use-package ws-butler
   :hook ((text-mode . ws-butler-mode)
          (prog-mode . ws-butler-mode)))
 
-;; Comment-DWIM
-;; Allows for commenting out reigons and lines with a keypress. (M-;)
+;; comment-dwim-2
+;; An all-in-one comment command to rule them all
 (use-package comment-dwim-2
   :bind (("M-;" . comment-dwim-2)
         (:map org-mode-map
               ("M-;" . org-comment-dwim-2))))
 
-;; Which-Key
-;; Shows keybind in command minibuffer menu.
+;; which-key
+;; Display available keybindings in popup
 (use-package which-key
   :init
   (which-key-mode)
   :config
   (setq which-key-idle-delay 0.1))
 
-;; Smartparens
-;; Automatic parenthesis placement
+;; smartparens
+;; Automatic insertion, wrapping and paredit-like navigation with userdefined
+;; pairs.
 (use-package smartparens
   :diminish smartparens-mode
   :config
@@ -167,8 +177,8 @@
   (global-set-key (kbd "M-C-f") 'sp-forward-sexp)
   (global-set-key (kbd "M-C-b") 'sp-backward-sexp))
 
-;; Undo Fu
-;; More understandable undo system for a pea brain like me
+;; undo-fu
+;; Undo helper with redo
 (use-package undo-fu
   :init
   (global-set-key (kbd "M-u")   'undo-fu-only-undo)
@@ -178,13 +188,14 @@
   (setq undo-strong-limit 100663296)
   (setq undo-outer-limit 1006632960))
 
-;; Undo Fu Session
-;; Keeps undos from undo-fu even when emacs is closed
+;; undo-fu-session
+;; Persistent undo, available between sessions
 (use-package undo-fu-session
   :init
   (undo-fu-session-global-mode))
 
-;; Flycheck
+;; flycheck
+;; On-the-fly syntax checking
 (use-package flycheck
   :bind
   (("C-c f" . flycheck-mode))
@@ -192,41 +203,48 @@
   ;; (add-hook 'after-init-hook #'global-flycheck-mode)
 )
 
-;; Rainbow Delimiters
-;; Highlights Corresponding Brackets
+;; rainbow-delimiters
+;; Highlight brackets according to their depth
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; Keep .config/emacs clean
+;; no-littering
+;; Help keeping ~/.config/emacs clean
 (use-package no-littering)
 
-;; Emojify
+;; emojify
+;; Display emojis in Emacs
 (use-package emojify
   :hook (erc-mode . emojify-mode)
   :commands emojify-mode)
 
-;; Elcord
-;; Discord rich prescence for Emacs
-(use-package elcord)
+;; elcord
+;; Allows you to integrate Rich Presence from Discord
+(use-package elcord
   ;; :init
   ;; (elcord-mode))
+)
 
-;; Neotree
+;; neotree
+;; A tree plugin like NerdTree for Vim
 (use-package neotree
   :config
   (setq neo-theme 'nerd))
 
-;; Doom modeline
+;; doom-modeline
+;; A minimal and modern mode-line
 (use-package doom-modeline
   :init
   (doom-modeline-mode 1))
 
-;; VTerm
+;; vterm
+;; Fully-featured terminal emulator
 (use-package vterm
   :bind
   (("M-RET" . vterm)))
 
-;; Custom Dashboard
+;; dashboard
+;; A startup screen extracted from Spacemacs
 (use-package dashboard
   :config
   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
@@ -252,6 +270,8 @@
   :init
   (dashboard-setup-startup-hook))
 
+;; elfeed-dashboard
+;; An extensible frontend for elfeed using org-mode
 (use-package elfeed-dashboard
   :config
   (setq elfeed-dashboard-file "~/.config/emacs/elfeed/elfeed-dashboard.org")
@@ -260,13 +280,15 @@
   :init
   (load "~/.config/emacs/elfeed/feeds.el"))
 
-;; Dirvish
-;; an improved version of the Emacs inbuilt package Dired.
+;; dirvish
+;; A modern file manager based on dired mode
 (use-package dirvish
   :init
   (dirvish-override-dired-mode 1))
 
 ;; ibuffer
+;; Ibuffer is an advanced replacement for BufferMenu, which lets you operate
+;; on buffers much in the same manner as Dired.
 (use-package ibuffer
   :config
   (setq ibuffer-save-with-custom nil
@@ -281,8 +303,13 @@
             (lambda ()
               (ibuffer-switch-to-saved-filter-groups "default"))))
 
-;; Impatient Mode
-;; emacs live preview
+;; nerd-icons-ibuffer
+;; Display nerd icons in ibuffer
+(use-package nerd-icons-ibuffer
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+;; impatient-mode
+;; Serve buffers live over HTTP
 (use-package impatient-mode
   :config
   (defun impatient-start ()
@@ -298,7 +325,7 @@
 ;;            [========]
 
 ;; org-bullets
-;; Replace *s with utf-8 bullets
+;; Show bullets in org-mode as UTF-8 characters
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (setq org-hide-leading-stars t)
@@ -307,7 +334,7 @@
 (setq org-src-fontify-natively t)
 
 ;; toc-org
-;; Table of contents for org
+;; add table of contents to org-mode files
 (use-package toc-org
   :commands toc-org-enable
   :init (add-hook '^org-mode-hook 'toc-org-enable))
@@ -315,6 +342,7 @@
 ;; Org agenda file
 (setq org-agenda-files "~/agenda.org")
 
+;; Org heading text sizes
 (custom-set-faces
   '(org-level-1 ((t (:inherit outline-1 :height 1.75))))
   '(org-level-2 ((t (:inherit outline-2 :height 1.5))))
@@ -394,6 +422,8 @@
 ;; Double Check Before Quit
 (setq confirm-kill-proccesses t)
 
+;; Replace selection when typing or pasting
+(delete-selection-mode 1)
 
 ;; Refresh File When File Changes Outside of Emacs
 (global-auto-revert-mode 1)
