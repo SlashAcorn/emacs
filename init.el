@@ -324,17 +324,15 @@
   '(org-document-title ((t (:height 2.0)))))
 
 ;; Prettify Symbols
-(defun my/org-mode/load-prettify-symbols ()
-  (interactive)
-  (setq prettify-symbols-alist
-        '(("[ ]" . ?󰄱)
-          ("[X]" . ?󰱒)
-          ("#+DATE:" . ?󰃮)
-          ("#+begin_src" . ?)
-          ("#+end_src" . ?)
-          ("#+begin_example" .)
-          ("#+end_example" .)))
-  (prettify-symbols-mode 1))
+(setq prettify-symbols-alist
+      '(("[ ]" . ?󰄱)
+        ("[X]" . ?󰱒)
+        ("#+DATE:" . ?󰃮)
+        ("#+begin_src" . ?)
+        ("#+end_src" . ?)
+        ("#+begin_example" .)
+        ("#+end_example" .)))
+(prettify-symbols-mode 1)
 
 ;;             BASIC CONFIGURATAION
 ;;            [====================]
