@@ -331,6 +331,12 @@
 (use-package nerd-icons-ibuffer
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
+;; rainbow-mode
+;; Colorize color names in buffers
+(use-package rainbow-mode
+  :init
+  (rainbow-mode 1))
+
 ;; impatient-mode
 ;; Serve buffers live over HTTP
 (use-package impatient-mode
