@@ -293,15 +293,19 @@
   :init
   (dashboard-setup-startup-hook))
 
+(use-package elfeed
+  :config
+  (setq-default elfeed-search-filter "+unread ")
+  :init
+  (load "~/.config/emacs/elfeed/feeds.el"))
+
 ;; elfeed-dashboard
 ;; An extensible frontend for elfeed using org-mode
 (use-package elfeed-dashboard
   :config
   (setq elfeed-dashboard-file "~/.config/emacs/elfeed/elfeed-dashboard.org")
   ;; update feed counts on elfeed-quit
-  (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)
-  :init
-  (load "~/.config/emacs/elfeed/feeds.el"))
+  (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
 
 ;; dirvish
 ;; A modern file manager based on dired mode
