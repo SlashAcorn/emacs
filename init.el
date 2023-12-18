@@ -294,10 +294,18 @@
   (dashboard-setup-startup-hook))
 
 (use-package elfeed
+  :custom
+  (elfeed-show-entry-switch 'switch-to-buffer-other-window)
   :config
-  (setq-default elfeed-search-filter "+unread ")
-  :init
-  (load "~/.config/emacs/elfeed/feeds.el"))
+  (setq-default elfeed-search-filter "+unread "))
+  ;; :init
+  ;; (load "~/.config/emacs/elfeed/feeds.el"))
+
+(use-package elfeed-org
+  :config
+  (progn
+    (elfeed-org)
+    (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed/feeds.org"))))
 
 ;; elfeed-dashboard
 ;; An extensible frontend for elfeed using org-mode
@@ -374,6 +382,9 @@
 
 ;; Org agenda file
 (setq org-agenda-files "~/agenda.org")
+
+;; Org shift selection
+(setq org-support-shift-select t)
 
 ;; Org heading text sizes
 (custom-set-faces

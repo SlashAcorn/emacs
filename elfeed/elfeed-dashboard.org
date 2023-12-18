@@ -1,20 +1,22 @@
-* Basics
-
+* Basic Keybinds
  [U] Update Elfeed
  [s] Search
  [E] Edit
  [g] Refresh counts
  [q] Kill dashboard
 
-* Bookmarks
+* Feeds
+** [u] Unread ([[elfeed:+unread][258]])
+ [n] New      ([[elfeed:+unread @1-week-old][ 0]])
 
- [u] Unread      ([[elfeed:+unread][  1060]]/[[elfeed:][ 13337]])
- [b] Blogs       ([[elfeed:+unread +blog][   151]]/[[elfeed:+blog][  2820]])
-    - [e] Emacs          ([[elfeed:+unread +emacs][   231]]/[[elfeed:+emacs][  5837]])
-    - [n] Null Program   ([[elfeed:+unread +nullprogram][     0]]/[[elfeed:+nullprogram][     0]])
- [m] Monitoring  ([[elfeed:+unread +monitoring][     0]]/[[elfeed:+monitoring][    78]])
- [n] News        ([[elfeed:+unread +news][    31]]/[[elfeed:+news][  4959]])
- [v] Video       ([[elfeed:+unread +video][     0]]/[[elfeed:+video][  1245]])
+ [b] Blogs    ([[elfeed:+unread +blog][ 0]])
+ [y] Youtube  ([[elfeed:+unread +youtube][ 0]])
+ [N] The News ([[elfeed:+unread +news][ 0]])
+
+** All     ([[elfeed:][274]])
+ [b] Blogs       ([[elfeed:+unread +blog][ 0]])
+ [y] Youtube     ([[elfeed:+unread +youtube][ 0]])
+ [N] The News    ([[elfeed:+news][ 0]])
 
 * Configuration
   :PROPERTIES:
@@ -24,12 +26,13 @@
   Press "E" to edit and M-x elfeed-dashboard-mode to go back
 
   #+STARTUP: showall showstars indent
-  #+KEYMAP: u | elfeed-dashboard-query "+unread"
-  #+KEYMAP: be | elfeed-dashboard-query "+unread +blogs +emacs"
-  #+KEYMAP: bn | elfeed-dashboard-query "+unread +blogs +nullprogram"
-  #+KEYMAP: m | elfeed-dashboard-query "+unread +monitoring"
-  #+KEYMAP: v | elfeed-dashboard-query "+unread +video"
-  #+KEYMAP: n | elfeed-dashboard-query "+unread +news"
+  #+KEYMAP: n | elfeed-dashboard-query "+unread @1-week-old"
+  #+KEYMAP: ub | elfeed-dashboard-query "+unread +blog"
+  #+KEYMAP: uy | elfeed-dashboard-query "+unread +youtube"
+  #+KEYMAP: uN | elfeed-dashboard-query "+unread +news"
+  #+KEYMAP: b | elfeed-dashboard-query "+blog"
+  #+KEYMAP: y | elfeed-dashboard-query "+youtube"
+  #+KEYMAP: N | elfeed-dashboard-query "+news"
   #+KEYMAP: s | elfeed
   #+KEYMAP: g | elfeed-dashboard-update-links
   #+KEYMAP: U | elfeed-dashboard-update
