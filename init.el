@@ -297,9 +297,9 @@
   :custom
   (elfeed-show-entry-switch 'switch-to-buffer-other-window)
   :config
-  (setq-default elfeed-search-filter "+unread "))
-  ;; :init
-  ;; (load "~/.config/emacs/elfeed/feeds.el"))
+  (setq-default elfeed-search-filter "+unread ")
+  :init
+  (setq elfeed-feeds "+org"))
 
 (use-package elfeed-org
   :config
@@ -314,6 +314,30 @@
   (setq elfeed-dashboard-file "~/.config/emacs/elfeed/elfeed-dashboard.org")
   ;; update feed counts on elfeed-quit
   (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
+
+;; elfeed-tube
+;; YouTube integration for Elfeed
+(use-package elfeed-tube
+  :after elfeed
+  :demand t
+  :config
+  ;; (setq elfeed-tube-auto-save-p nil) ; default value
+  ;; (setq elfeed-tube-auto-fetch-p t)  ; default value
+  (elfeed-tube-setup)
+
+  :bind (:map elfeed-show-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)
+         :map elfeed-search-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)))
+
+;; elfeed-tube-mpv
+;; Control mpv from Elfeed
+(use-package elfeed-tube-mpv
+  :bind (:map elfeed-show-mode-map
+              ("C-c C-f" . elfeed-tube-mpv-follow-mode)
+              ("C-c C-w" . elfeed-tube-mpv-where)))
 
 ;; dirvish
 ;; A modern file manager based on dired mode

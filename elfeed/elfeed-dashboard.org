@@ -11,7 +11,7 @@
 
  [b] Blogs    ([[elfeed:+unread +blog][ 0]])
  [y] Youtube  ([[elfeed:+unread +youtube][ 0]])
- [N] The News ([[elfeed:+unread +news][ 0]])
+ [N] News     ([[elfeed:+unread +news][ 0]])
 
 ** All     ([[elfeed:][274]])
  [b] Blogs       ([[elfeed:+unread +blog][ 0]])
