@@ -99,8 +99,14 @@
   :init
   (nerd-icons-ivy-rich-mode 1))
 
+;; prescient
+;; Better sorting and filtering
+(use-package prescient
+  :config
+  (prescient-persist-mode 1))
+
 ;; ivy-prescient
-;; prescient.el + Ivy
+;; Prescient + Ivy
 (use-package ivy-prescient
   :after counsel
   :init
