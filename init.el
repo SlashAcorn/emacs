@@ -590,6 +590,12 @@
 ;; Remove Warning on Advised Functions
 (setq ad-redefinition-action 'accept)
 
+;; Ediff
+;; This now splits the window horizontally
+(setq ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
+
+
 ;;             KEYBOARD MODIFICATIONS
 ;;            [======================]
 
