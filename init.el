@@ -424,7 +424,7 @@
 ;; add table of contents to org-mode files
 (use-package toc-org
   :commands toc-org-enable
-  :init (add-hook '^org-mode-hook 'toc-org-enable))
+  :init (add-hook 'org-mode-hook 'toc-org-enable))
 
 ;; Org agenda file
 (setq org-agenda-files "~/agenda.org")
