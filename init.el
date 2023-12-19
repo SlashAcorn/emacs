@@ -680,23 +680,20 @@
   (interactive)
   (message "Searching for for duplicated words ...")
   (push-mark)
-
 ;; This regexp is not perfect
 ;; but is fairly good over all:
   (if 2(re-search-forward
        "\\b\\([^@ \n\t]+\\)[ \n\t]+\\1\\b" nil 'move)
       (message "Found duplicated word.")
     (message "End of buffer")))
-
-
 ;; Bind 'the-the' to  C-c
 (global-set-key "\C-c\\" 'the-the)
 
+;; Keybinds in elisp-mode
 (defun set-elisp-mode-settings ()
   "Sets my keybinds to use elisp evaluation commands"
   (local-set-key (kbd "C-c C-r") 'eval-region)
   (local-set-key (kbd "C-c C-b") 'eval-buffer))
-
 (add-hook 'emacs-lisp-mode-hook 'set-elisp-mode-settings)
 
 ;; Remove Bothersome Compiler Warnings
