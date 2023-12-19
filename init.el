@@ -303,20 +303,20 @@
   :custom
   (elfeed-show-entry-switch 'switch-to-buffer-other-window)
   :config
-  (setq-default elfeed-search-filter "+unread ")
-  :init
-  (setq elfeed-feeds "+org"))
+  (setq-default elfeed-search-filter "+unread "))
 
 (use-package elfeed-org
+  :after elfeed
   :config
-  (progn
-    (elfeed-org)
-    (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed/feeds.org"))))
+  (elfeed-org)
+  (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed/feeds.org")))
 
 ;; elfeed-dashboard
 ;; An extensible frontend for elfeed using org-mode
 (use-package elfeed-dashboard
+  :after elfeed
   :config
+  (add-to-list 'auto-mode-alist '("^elfeed-dashboard\.org\\'" . elfeed-dashboard-mode))
   (setq elfeed-dashboard-file "~/.config/emacs/elfeed/elfeed-dashboard.org")
   ;; update feed counts on elfeed-quit
   (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
