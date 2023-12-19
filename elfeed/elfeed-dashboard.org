@@ -6,17 +6,17 @@
  [q] Kill dashboard
 
 * Feeds
-** [u] Unread ([[elfeed:+unread][258]])
- [n] New      ([[elfeed:+unread @1-week-old][ 0]])
+** [u] Unread ([[elfeed:+unread][  11970]])
+ [n] New         ([[elfeed:+unread @1-week-old][   166]])
 
- [b] Blogs    ([[elfeed:+unread +blog][ 0]])
- [y] Youtube  ([[elfeed:+unread +youtube][ 0]])
- [N] News     ([[elfeed:+unread +news][ 0]])
+ [b] Blogs       ([[elfeed:+unread +blog][    81]])
+ [y] Youtube     ([[elfeed:+unread +youtube][   385]])
+ [N] News        ([[elfeed:+unread +news][   204]])
 
-** All     ([[elfeed:][274]])
- [b] Blogs       ([[elfeed:+unread +blog][ 0]])
- [y] Youtube     ([[elfeed:+unread +youtube][ 0]])
- [N] The News    ([[elfeed:+news][ 0]])
+** All        ([[elfeed:][     12019]])
+ [b] Blogs       ([[elfeed:+unread +blog][    81]])
+ [y] Youtube     ([[elfeed:+unread +youtube][   385]])
+ [N] The News    ([[elfeed:+news][   204]])
 
 * Configuration
   :PROPERTIES:
