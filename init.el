@@ -392,6 +392,21 @@
   (global-set-key (kbd "C-c C-l") 'impatient-start)
   (global-set-key (kbd "C-c C-L") 'impatient-mode))
 
+;; pdf-tools
+;; Support library for PDF documents
+(use-package pdf-tools
+  :commands (pdf-loader-install)
+  :mode "\\.pdf\\'"
+  :bind (:map pdf-view-mode-map
+              ("C-=" . pdf-view-enlarge)
+              ("C--" . pdf-view-shrink))
+  :init (pdf-loader-install)
+  :config (add-to-list 'revert-without-query ".pdf"))
+(add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)))
+
+;; smudge
+;; Control the Spotify app
+
 
 ;;             ORG MODE
 ;;            [========]
