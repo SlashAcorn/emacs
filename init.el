@@ -327,10 +327,9 @@
   :after elfeed
   :demand t
   :config
-  ;; (setq elfeed-tube-auto-save-p nil) ; default value
-  ;; (setq elfeed-tube-auto-fetch-p t)  ; default value
+  (setq elfeed-tube-auto-save-p  t)
+  (setq elfeed-tube-auto-fetch-p t)
   (elfeed-tube-setup)
-
   :bind (:map elfeed-show-mode-map
          ("F" . elfeed-tube-fetch)
          ([remap save-buffer] . elfeed-tube-save)
