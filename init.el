@@ -340,7 +340,9 @@
 ;; elfeed-tube-mpv
 ;; Control mpv from Elfeed
 (use-package elfeed-tube-mpv
+  :after elfeed-tube
   :bind (:map elfeed-show-mode-map
+              ("RET"     . elfeed-tube-mpv)
               ("C-c C-f" . elfeed-tube-mpv-follow-mode)
               ("C-c C-w" . elfeed-tube-mpv-where)))
 
