@@ -346,6 +346,10 @@
               ("C-c C-f" . elfeed-tube-mpv-follow-mode)
               ("C-c C-w" . elfeed-tube-mpv-where)))
 
+;; yeetube
+;; YouTube Front End
+(use-package yeetube)
+
 ;; dirvish
 ;; A modern file manager based on dired mode
 (use-package dirvish
