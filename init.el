@@ -720,6 +720,11 @@ _u_: User Playlists      _r_  : Repeat            _d_: Device
 ;;                      MISC
 ;;                    [======]
 
+(defun elfeed-dashboard-open ()
+  (interactive)
+  (find-file "~/.config/emacs/elfeed/elfeed-dashboard.org")
+  (elfeed-dashboard-mode))
+
 ;; Replace yes-or-no-p with a shorter y-or-n-p
 (defalias 'yes-or-no-p 'y-or-n-p)
 
